@@ -94,7 +94,7 @@ router.put('/:id', async(req, res,next) => {
     try {
         const db = await connectToDatabase();
 
-        const collection = await db.collection('secondChanceItems');
+        const collection =  db.collection('secondChanceItems');
 
         const secondChanceItem = await collection.findOne({ id: req.params.id })
 
@@ -132,13 +132,13 @@ router.delete('/:id', async(req, res,next) => {
         const db = await connectToDatabase();
         const collection = await db.collection("secondChanceItems");
 
-        secondChanceItem = await collection.findOne({ id });
+        secondChanceItem = await collection.findOne({ id: req.params.id });
 
         if (!secondChanceItem) {
             logger.error("secondChanceItem not found")
              return res.status(404).json({ error: "secondChanceItem not found"});
         } 
-        await collection.delete({ id });
+        await collection.delete({ id: req.params.id });
         res.json({ "deleted": "success"});
     } catch (e) {
         next(e);
