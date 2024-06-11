@@ -77,7 +77,7 @@ router.get('/:id', async (req, res, next) => {
         
         const collection = db.collection('secondChanceItems');
 
-        const secondChanceItem = await collection.findOne({"id": id});
+        const secondChanceItem = await collection.findOne({ id: req.params.id});
 
         if (!secondChanceItem){
             return res.status(404).send("secondChanceItem not found");
@@ -96,7 +96,7 @@ router.put('/:id', async(req, res,next) => {
 
         const collection = await db.collection('secondChanceItems');
 
-        const secondChanceItem = await collection.findOne({"id": id})
+        const secondChanceItem = await collection.findOne({ id: req.params.id })
 
         if (!secondChanceItem) {
             return res.status(401).send("secondChanceItem not found");

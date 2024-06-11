@@ -9,8 +9,6 @@ const pino = require('pino');  // Import Pino logger
 const { body, validationResult } = require('express-validator');
 dotenv.config();
 
-const logger = pino();  // Create a Pino logger instance
-
 // Create a jwt secret
 const JWT_SECRET = process.env.JWT_SECRET;
 

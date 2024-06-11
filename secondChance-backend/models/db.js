@@ -6,22 +6,24 @@ const MongoClient = require('mongodb').MongoClient;
 let url = `${process.env.MONGO_URL}`;
 
 let dbInstance = null;
+
 const dbName = `${process.env.MONGO_DB}`;
 
 async function connectToDatabase() {
-    if (dbInstance){
-        return dbInstance
-    };
 
-    const client = new MongoClient(url);      
+    // if (dbInstance){
+    //     return dbInstance
+    // };
 
-    // Task 1: Connect to MongoDB
+    const client = new MongoClient(url);
+
+    // Connect to MongoDB
     await client.connect();
 
-    // Task 2: Connect to database giftDB and store in variable dbInstance
-    const dbInstance = client.db(giftDB);
+    // Connect to database and store in variable dbInstance
+    const dbInstance = client.db(dbName);
 
-    // Task 3: Return database instance
+    // Return database instance
     return dbInstance
 }
 
